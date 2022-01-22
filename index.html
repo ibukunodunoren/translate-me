@@ -1,52 +1,64 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
-  </head>
-  <body>
-    <p id="status">Not Connected</p>
-    <p id="transcript"></p>
-    <script>
-      navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-        console.log({ stream });
-        if (!MediaRecorder.isTypeSupported("audio/webm"))
-          return alert("Browser not supported");
-        const mediaRecorder = new MediaRecorder(stream, {
-          mimeType: "audio/webm",
-        });
-        const socket = new WebSocket("wss://api.deepgram.com/v1/listen", [
-          "token",
-          "e7be61060c96f293ab1703011527704193cd5406",
-        ]);
-        socket.onopen = () => {
-          document.querySelector("#status").textContent = "Connected";
-          console.log({ event: "onopen" });
-          mediaRecorder.addEventListener("dataavailable", async (event) => {
-            if (event.data.size > 0 && socket.readyState == 1) {
-              socket.send(event.data);
-            }
-          });
-          mediaRecorder.start(1000);
-        };
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="../style.css">
+        <script type="text/javascript" src="worker_handler.js"></script>
 
-        socket.onmessage = (message) => {
-          const received = JSON.parse(message.data);
-          const transcript = received.channel.alternatives[0].transcript;
-          if (transcript && received.is_final) {
-            console.log(transcript);
-            document.querySelector("#transcript").textContent +=
-              transcript + " ";
-          }
-        };
+        <title>Translate - Translate Me</title>
+        <link rel="icon" type="image/x-icon" href="../assets/sentiment/meh.png">
+    </head>
 
-        socket.onclose = () => {
-          console.log({ event: "onclose" });
-        };
-
-        socket.onerror = (error) => {
-          console.log({ event: "onerror", error });
-        };
-      });
-    </script>
-  </body>
+    <body>
+        <div class=navbar>
+            <div class=logo>
+                <a href=""><h1>Translate Me</h1></a>
+            </div>
+            <div class=nav-links>
+                <a href="about.html">About</a>
+                <a href="https://github.com/ibukunodunoren/translate-me">GitHub</a>
+                <a href="">Devpost</a>
+            </div>
+        </div>
+        
+        <div class=content>
+            <div class=content-card>
+                <div class=content-title>
+                    <h2>English Transcript</h2>
+                </div>
+                <p id="english-transcript">Press the start button in the bottom right of the screen to begin transcribing</p><br>
+            </div>
+            
+            <div class=content-card>
+                <div class=content-title>
+                    <h2>Translated Transcript</h2>
+                </div>
+                <p id="translated-transcript">Press the start button in the bottom right of the screen to begin transcribing</p><br>
+            </div>
+            
+            <div class=content-card>
+                <div class=content-title>
+                    <h2>Sentiment</h2>
+                </div>
+                <div class=sentiment>
+                    <div class=sentiment-card>
+                        <h3>Other Person</h3>
+                        <img src="../assets/sentiment/frown.png"></img>
+                        <br>{{ sentiment_img_other }}
+                    </div>
+                    
+                    <div class=sentiment-card>
+                        <h3>You</h3>
+                        <img src="../assets/sentiment/meh.png"></img>
+                        <br>{{ sentiment_img_self }}
+                    </div>
+                    
+                    <button onclick="startWorker()">Start Worker</button>
+                    <button onclick="stopWorker()">Stop Worker</button>
+                </div>
+            </div>
+        </div>
+        
+        <br>
+    </body>
 </html>
