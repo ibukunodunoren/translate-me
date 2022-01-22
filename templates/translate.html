@@ -2,15 +2,24 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" type="text/css" href="../style.css">
 
         <title>Translate - Translate Me</title>
         <link rel="icon" type="image/x-icon" href="../assets/sentiment/meh.png">
     </head>
 
     <body>
-        {% extends "template.html" %}
-        {% block content %}
+        <div class=navbar>
+            <div class=logo>
+                <a href=""><h1>Translate Me</h1></a>
+            </div>
+            <div class=nav-links>
+                <a href="about.html">About</a>
+                <a href="https://github.com/ibukunodunoren/translate-me">GitHub</a>
+                <a href="">Devpost</a>
+            </div>
+        </div>
+        
         <div class=content>
             <div class=content-card>
                 <div class=content-title>
@@ -33,18 +42,19 @@
                 <div class=sentiment>
                     <div class=sentiment-card>
                         <h3>Other Person</h3>
-                        <img src="{{ url_for('static', filename='sentiment/frown.png') }}"></img>
+                        <img src="../assets/sentiment/frown.png"></img>
                         <br>{{ sentiment_img_other }}
                     </div>
                     
                     <div class=sentiment-card>
                         <h3>You</h3>
-                        <img src="{{ url_for('static', filename='sentiment/meh.png') }}"></img>
+                        <img src="../assets/sentiment/meh.png"></img>
                         <br>{{ sentiment_img_self }}
                     </div>
                 </div>
             </div>
         </div>
-        {% endblock %}
+        
+        <br>
     </body>
 </html>
