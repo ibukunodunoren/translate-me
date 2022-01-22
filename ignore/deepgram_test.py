@@ -1,7 +1,7 @@
 # Transribes a spoken conversation and returns the messages as they are transcribed
 # def deepgram():
 
-from deepgram_test import Deepgram
+from ignore.deepgram_test import Deepgram
 import asyncio, json
 
 # The API key you created in step 1
