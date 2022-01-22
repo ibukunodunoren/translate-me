@@ -2,11 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="../style.css">
+        <link rel="stylesheet" type="text/css" href="./style.css">
         <script type="text/javascript" src="worker_handler.js"></script>
 
         <title>Translate - Translate Me</title>
-        <link rel="icon" type="image/x-icon" href="../assets/sentiment/meh.png">
+        <link rel="icon" type="image/x-icon" href="./assets/sentiment/meh.png">
     </head>
 
     <body>
@@ -26,14 +26,14 @@
                 <div class=content-title>
                     <h2>English Transcript</h2>
                 </div>
-                <p id="english-transcript">Press the start button in the bottom right of the screen to begin transcribing</p><br>
+                <p id="english-transcript"></p><br>
             </div>
             
             <div class=content-card>
                 <div class=content-title>
                     <h2>Translated Transcript</h2>
                 </div>
-                <p id="translated-transcript">Press the start button in the bottom right of the screen to begin transcribing</p><br>
+                <p id="translated-transcript"></p><br>
             </div>
             
             <div class=content-card>
@@ -42,15 +42,13 @@
                 </div>
                 <div class=sentiment>
                     <div class=sentiment-card>
-                        <h3>Other Person</h3>
-                        <img src="../assets/sentiment/frown.png"></img>
-                        <br>{{ sentiment_img_other }}
+                        <h3>Person 1</h3>
+                        <img id=sentiment_img_1 src="./assets/sentiment/circle.png"></img>
                     </div>
                     
                     <div class=sentiment-card>
-                        <h3>You</h3>
-                        <img src="../assets/sentiment/meh.png"></img>
-                        <br>{{ sentiment_img_self }}
+                        <h3>Person 2</h3>
+                        <img id=sentiment_img_2 src="./assets/sentiment/circle.png"></img>
                     </div>
                     
                     <button onclick="startWorker()">Start Worker</button>

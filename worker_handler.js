@@ -1,19 +1,23 @@
 var w;
 
 function startWorker() {
-  if (typeof(Worker) !== "undefined") {
-    if (typeof(w) == "undefined") {
-      w = new Worker("py_linker.js");
+    if (typeof(Worker) !== "undefined") {
+        if (typeof(w) == "undefined") {
+            w = new Worker("py_linker.js");
+        }
+        w.onmessage = function(event) {
+            console.log(event.data);
+            document.getElementById("english-transcript").innerHTML += event.data[0] + "<br>";
+            document.getElementById("translated-transcript").innerHTML += event.data[1] + "<br>";
+            document.getElementById("sentiment_img_1").src = "./assets/sentiment/" + event.data[2];
+            document.getElementById("sentiment_img_2").src = "./assets/sentiment/" + event.data[3];
+        };
+    } else {
+        document.getElementById("result").innerHTML = "Sorry! No Web Worker support.";
     }
-    w.onmessage = function(event) {
-      document.getElementById("english-transcript").innerHTML = event.data;
-    };
-  } else {
-    document.getElementById("result").innerHTML = "Sorry! No Web Worker support.";
-  }
 }
 
 function stopWorker() {
-  w.terminate();
-  w = undefined;
+    w.terminate();
+    w = undefined;
 }
