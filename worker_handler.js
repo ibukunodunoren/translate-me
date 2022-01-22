@@ -7,10 +7,10 @@ function startWorker() {
         }
         w.onmessage = function(event) {
             console.log(event.data);
-            document.getElementById("english-transcript").innerHTML += event.data[0] + "<br>";
-            document.getElementById("translated-transcript").innerHTML += event.data[1] + "<br>";
-            document.getElementById("sentiment_img_1").src = "./assets/sentiment/" + event.data[2];
-            document.getElementById("sentiment_img_2").src = "./assets/sentiment/" + event.data[3];
+            document.getElementById("english-transcript").innerHTML += "<b>Speaker " + event.data[0] + ":</b> " + event.data[1] + "<br>";
+            document.getElementById("translated-transcript").innerHTML += "<b>Speaker " + event.data[0] + ":</b> " + event.data[2] + "<br>";
+            document.getElementById("sentiment_img_1").src = "./assets/sentiment/" + event.data[3];
+            document.getElementById("sentiment_img_2").src = "./assets/sentiment/" + event.data[4];
         };
     } else {
         document.getElementById("result").innerHTML = "Sorry! No Web Worker support.";

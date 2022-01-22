@@ -20,7 +20,7 @@ function timedCount() {
         sentiment_img[speaker] = "meh.png";
     }
     
-    postMessage([english, translated, sentiment_img[0], sentiment_img[1]]);
+    postMessage([speaker+1, english, translated, sentiment_img[0], sentiment_img[1]]);
     setTimeout("timedCount()",500);
 }
 
