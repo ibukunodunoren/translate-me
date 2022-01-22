@@ -9,35 +9,25 @@
     </head>
 
     <body>
-        <div class=navbar>
-            <div class=logo>
-                <a href="translate.html"><h1>Translate Me</h1></a>
+        {% extends "template.html" %}
+        {% block content %}
+        <div class=content-card>
+            <div class=content-title>
+                <h2>About This Project</h2>
             </div>
-            <div class=nav-links>
-                <a href="">About</a>
-                <a href="">GitHub</a>
-                <a href="">Devpost</a>
-            </div>
+            <p>
+                This project was made for Hack Cambridge Atlas 2022, with the challenges being using Deepgram to make some kind of social improvement.<br>
+                <br>
+                The aim of Translate Me is to allow people who are less familiar with English, such as migrant workers, to be able to communicate with
+                native English speakers, as this would improve their job prospects, as well as improving their general ease of living should they be living
+                in an English speaking country.<br>
+                <br>
+                The project was made by Ibukun Odunoren, Kushal Mehta, Solaris Li, and Sui Leng Teo.<br>
+                <br>
+                The main libraries used in this project were
+                <a href="https://pypi.org/project/Flask/">Flask</a> and <a href="https://pypi.org/project/deepgram-sdk/">Deepgram</a>.
+            </p>
         </div>
-        
-        <div class=content>
-            <div class=content-card>
-                <div class=content-title>
-                    <h2>About This Project</h2>
-                </div>
-                <p>
-                    This project was made for Hack Cambridge Atlas 2022, with the challenges being using Deepgram to make some kind of social improvement.<br>
-                    <br>
-                    The aim of Translate Me is to allow people who are less familiar with English, such as migrant workers, to be able to communicate with
-                    native English speakers, as this would improve their job prospects, as well as improving their general ease of living should they be living
-                    in an English speaking country.<br>
-                    <br>
-                    The project was made by Ibukun Odunoren, Kushal Mehta, Solaris Li, and Sui Leng Teo.<br>
-                    <br>
-                    The main libraries used in this project were
-                    <a href="https://pypi.org/project/Flask/">Flask</a> and <a href="https://pypi.org/project/deepgram-sdk/">Deepgram</a>.
-                </p>
-            </div>
-        </div>
+        {% endblock %}
     </body>
 </html>

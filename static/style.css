@@ -44,11 +44,11 @@ h1 {
 }
 
 .content {
-	background: black;
 	height: 100%;
 	display: flex;
 	justify-content: space-between;
 	padding: 20px 10px;
+	width: 97%;
 }
 
 .content-card {

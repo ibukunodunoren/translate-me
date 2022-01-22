@@ -11,11 +11,3 @@ def analyse2(sentence):
         polarity += TextBlob(slice).sentiment.polarity
         
     return round(polarity/len(sentence), 2)
-    
-text = "I really hate this product"
-sentence = ["I really hate this product", "but it's also quite interesting to play with"]
-
-pol = analyse(text)
-print(pol)
-pol = analyse2(sentence)
-print(pol)
