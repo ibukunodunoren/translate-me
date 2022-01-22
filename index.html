@@ -4,46 +4,53 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <p id="status">Not Connected</p>
+    <p id="status">Loading</p>
+    <p id="translation"></p>
     <p id="transcript"></p>
     <script>
       navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
         console.log({ stream });
         if (!MediaRecorder.isTypeSupported("audio/webm"))
-          return alert("Browser not supported");
-        const mediaRecorder = new MediaRecorder(stream, {
+          alert("Browser not supported");
+        const input = new MediaRecorder(stream, {
           mimeType: "audio/webm",
         });
-        const socket = new WebSocket("wss://api.deepgram.com/v1/listen", [
+        const websocket = new WebSocket("wss://api.deepgram.com/v1/listen", [
           "token",
           "e7be61060c96f293ab1703011527704193cd5406",
         ]);
-        socket.onopen = () => {
-          document.querySelector("#status").textContent = "Connected";
+        websocket.onopen = () => {
+          document.querySelector("#status").textContent = "Start speaking...";
           console.log({ event: "onopen" });
-          mediaRecorder.addEventListener("dataavailable", async (event) => {
-            if (event.data.size > 0 && socket.readyState == 1) {
-              socket.send(event.data);
+          input.addEventListener("dataavailable", async (event) => {
+            if (event.data.size > 0 && websocket.readyState == 1) {
+              websocket.send(event.data);
             }
           });
-          mediaRecorder.start(1000);
+          input.start(250);
         };
 
-        socket.onmessage = (message) => {
+        websocket.onmessage = (message) => {
           const received = JSON.parse(message.data);
           const transcript = received.channel.alternatives[0].transcript;
           if (transcript && received.is_final) {
-            console.log(transcript);
+            //inside here run translation
+
+            //get translated word
+            //rewrite tranlations
+            console.log(translation);
+            document.querySelector("#translation").textContent += //translated transript
+              console.log(transcript);
             document.querySelector("#transcript").textContent +=
               transcript + " ";
           }
         };
 
-        socket.onclose = () => {
+        websocket.onclose = () => {
           console.log({ event: "onclose" });
         };
 
-        socket.onerror = (error) => {
+        websocket.onerror = (error) => {
           console.log({ event: "onerror", error });
         };
       });
