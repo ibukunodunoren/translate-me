@@ -62,59 +62,5 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD:index.html
-        
-        <br>
-
-        <!-- <script>
-            navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-              console.log({ stream });
-              if (!MediaRecorder.isTypeSupported("audio/webm"))
-                alert("Browser not supported");
-              const input = new MediaRecorder(stream, {
-                mimeType: "audio/webm",
-              });
-              const websocket = new WebSocket("wss://api.deepgram.com/v1/listen", [
-                "token",
-                "e7be61060c96f293ab1703011527704193cd5406",
-              ]);
-              websocket.onopen = () => {
-                document.querySelector("#status").textContent = "Start speaking...";
-                console.log({ event: "onopen" });
-                input.addEventListener("dataavailable", async (event) => {
-                  if (event.data.size > 0 && websocket.readyState == 1) {
-                    websocket.send(event.data);
-                  }
-                });
-                input.start(250);
-              };
-      
-              websocket.onmessage = (message) => {
-                const received = JSON.parse(message.data);
-                const transcript = received.channel.alternatives[0].transcript;
-                if (transcript && received.is_final) {
-                  //inside here run translation
-      
-                  //get translated word
-                  //rewrite tranlations
-                //   console.log(translation);
-                //   document.querySelector("#translation").textContent += //translated transript
-                    console.log(transcript);
-                  document.querySelector("#transcript").textContent +=
-                    transcript + " ";
-                }
-              };
-      
-              websocket.onclose = () => {
-                console.log({ event: "onclose" });
-              };
-      
-              websocket.onerror = (error) => {
-                console.log({ event: "onerror", error });
-              };
-            });
-          </script> -->
-=======
->>>>>>> 870ac4b76f0515e02075793f1de7b87d435be421:public/views/index.html
     </body>
 </html>
