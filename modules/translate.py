@@ -7,7 +7,7 @@ from langdetect import detect #returns en, zh, fr for english, mandarin, french 
   
 #for speaker 1 
 def translateFirst(text_01, text_02):
-    translator = Translator(to_lang="{}".format(detect(text_02))) #trying to input variable within list
+    translator = Translator(to_lang="{}".format(detect(text_02)))
     translation = translator.translate(text_01) 
     return(translation)
 
