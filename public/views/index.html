@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
-        <script type="text/javascript" src="worker_handler.js"></script>
+        <script type="text/javascript" src="../js/worker_handler.js"></script>
+        <script type="text/javascript" src="../js/deepgram.js"></script>
 
         <title>Translate - Translate Me</title>
         <link rel="icon" type="image/x-icon" href="sentiment/meh.png">
@@ -43,12 +44,12 @@
                 <div class=sentiment>
                     <div class=sentiment-card>
                         <h3>Speaker 1</h3>
-                        <img id=sentiment_img_1 src="/public/sentiment/circle.png"></img>
+                        <img id=sentiment_img_1 src="../sentiment/circle.png"></img>
                     </div>
                     
                     <div class=sentiment-card>
                         <h3>Speaker 2</h3>
-                        <img id=sentiment_img_2 src="./assets/sentiment/circle.png"></img>
+                        <img id=sentiment_img_2 src="../sentiment/circle.png"></img>
                     </div>
                     
                     <p id="status">Not Connected</p>
@@ -58,51 +59,5 @@
                 </div>
             </div>
         </div>
-
-        
-        
-        <script>
-            function transcribe() {
-                navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-            		console.log({ stream });
-            		if (!MediaRecorder.isTypeSupported("audio/webm"))
-            			return alert("Browser not supported");
-            		const mediaRecorder = new MediaRecorder(stream, {
-            			mimeType: "audio/webm",
-            		});
-            		const socket = new WebSocket("wss://api.deepgram.com/v1/listen", [
-            									"token",
-            									"e7be61060c96f293ab1703011527704193cd5406",
-            		]);
-            		socket.onopen = () => {
-            			document.querySelector("#status").textContent = "Connected";
-            			console.log({ event: "onopen" });
-            			mediaRecorder.addEventListener("dataavailable", async (event) => {
-            				if (event.data.size > 0 && socket.readyState == 1) {
-            					socket.send(event.data);
-            				}
-            			});
-            			mediaRecorder.start(1000);
-            		};
-            
-            		socket.onmessage = (message) => {
-            			const received = JSON.parse(message.data);
-            			const transcript = received.channel.alternatives[0].transcript;
-            			if (transcript && received.is_final) {
-            				console.log(transcript);
-            				document.querySelector("#english-transcript").textContent += transcript + " ";
-            			}
-            		};
-            
-            		socket.onclose = () => {
-            			console.log({ event: "onclose" });
-            		};
-            
-            		socket.onerror = (error) => {
-            			console.log({ event: "onerror", error });
-            		};
-            	});
-            }
-        </script>
     </body>
 </html>
