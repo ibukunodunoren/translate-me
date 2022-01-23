@@ -2,8 +2,7 @@ const   io = require('socket.io')(server),
         url = require('url'),
         sys = require('sys'),
         express = require('express'),
-        http = require('http'),
-        PythonShell = require('python-shell').PythonShell;
+        http = require('http');
 
 var app = express();
 var server = http.createServer(app);
