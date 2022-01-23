@@ -1,0 +1,25 @@
+{
+  "name": "translate-me",
+  "version": "1.0.0",
+  "description": "Hack Cambridge Atlas 2022 Project",
+  "main": "deepgram.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibukunodunoren/translate-me.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ibukunodunoren/translate-me/issues"
+  },
+  "homepage": "https://github.com/ibukunodunoren/translate-me#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "socket.io": "^4.4.1"
+  }
+}

@@ -1,11 +1,12 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="../style.css">
-        <script type="text/javascript" src="worker_handler.js"></script>
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
+        <script type="text/javascript" src="../js/worker_handler.js"></script>
+        <script type="text/javascript" src="../js/deepgram.js"></script>
 
         <title>Translate - Translate Me</title>
-        <link rel="icon" type="image/x-icon" href="../assets/sentiment/meh.png">
+        <link rel="icon" type="image/x-icon" href="sentiment/meh.png">
     </head>
 
     <body>
@@ -15,12 +16,12 @@
 
         <div class=navbar>
             <div class=logo>
-                <a href=""><h1>Translate Me</h1></a>
+                <a href="index.html"><h1>Translate Me</h1></a>
             </div>
             <div class=nav-links>
                 <a href="about.html">About</a>
                 <a href="https://github.com/ibukunodunoren/translate-me">GitHub</a>
-                <a href="">Devpost</a>
+                <a href="https://devpost.com/software/pending-ktcxao">Devpost</a>
             </div>
         </div>
         
@@ -29,15 +30,19 @@
                 <div class=content-title>
                     <h2>English Transcript</h2>
                 </div>
+<<<<<<< HEAD:index.html
                 <p id="english-transcript">Press the start button in the bottom right of the screen to begin transcribing</p><br>
                 
+=======
+                <p id="english-transcript"></p><br>
+>>>>>>> 870ac4b76f0515e02075793f1de7b87d435be421:public/views/index.html
             </div>
             
             <div class=content-card>
                 <div class=content-title>
                     <h2>Translated Transcript</h2>
                 </div>
-                <p id="translated-transcript">Press the start button in the bottom right of the screen to begin transcribing</p><br>
+                <p id="translated-transcript"></p><br>
             </div>
             
             <div class=content-card>
@@ -46,22 +51,23 @@
                 </div>
                 <div class=sentiment>
                     <div class=sentiment-card>
-                        <h3>Other Person</h3>
-                        <img src="../assets/sentiment/frown.png"></img>
-                        <br>{{ sentiment_img_other }}
+                        <h3>Speaker 1</h3>
+                        <img id=sentiment_img_1 src="../sentiment/circle.png"></img>
                     </div>
                     
                     <div class=sentiment-card>
-                        <h3>You</h3>
-                        <img src="../assets/sentiment/meh.png"></img>
-                        <br>{{ sentiment_img_self }}
+                        <h3>Speaker 2</h3>
+                        <img id=sentiment_img_2 src="../sentiment/circle.png"></img>
                     </div>
                     
+                    <p id="status">Not Connected</p>
+                    <button onclick="transcribe()">Start Transciption</button>
                     <button onclick="startWorker()">Start Worker</button>
                     <button onclick="stopWorker()">Stop Worker</button>
                 </div>
             </div>
         </div>
+<<<<<<< HEAD:index.html
         
         <br>
 
@@ -113,5 +119,7 @@
               };
             });
           </script> -->
+=======
+>>>>>>> 870ac4b76f0515e02075793f1de7b87d435be421:public/views/index.html
     </body>
 </html>
