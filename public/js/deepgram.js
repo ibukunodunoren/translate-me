@@ -27,6 +27,8 @@ function transcribe() {
 			if (transcript && received.is_final) {
 				console.log(transcript);
 				document.querySelector("#english-transcript").textContent += transcript + " ";
+				
+				
 			}
 		};
 

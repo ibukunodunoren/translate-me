@@ -1,8 +1,9 @@
-var io   = require('socket.io')(server),
-    url  = require('url'),
-    sys  = require('sys'),
-    express = require('express'),
-    http=require('http');
+const   io = require('socket.io')(server),
+        url = require('url'),
+        sys = require('sys'),
+        express = require('express'),
+        http = require('http'),
+        PythonShell = require('python-shell').PythonShell;
 
 var app = express();
 var server = http.createServer(app);
@@ -19,5 +20,7 @@ app.get('/', function(req, res){
 app.get('/about', function(req, res){
     res.render('about');
 });
+
+
 
 app.listen(4000);
